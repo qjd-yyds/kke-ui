@@ -1,0 +1,16 @@
+@import '../../style/index.less';
+@import './mixin.less';
+@btn-prefix-cls:~ '@{kke-prefix}-btn';
+.@{btn-prefix-cls} {
+  .btn();
+  .btn-default();
+  > span {
+    display: inline-block;
+  }
+  &-primary {
+    .btn-primary();
+  }
+  &-danger {
+    .btn-danger();
+  }
+}

@@ -1,0 +1,107 @@
+@import './color/colors.less';
+
+@root-entry-name: default;
+
+@html-selector: html;
+@kke-prefix: kke;
+// -------- 默认变量 -----------
+@body-background: #fff;
+@component-background: #fff;
+@font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+@code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+@line-height-base: 1.5715;
+@border-radius-base: 2px;
+@text-color: fade(@black, 85%);
+@text-color-secondary: fade(@black, 45%);
+@text-color-inverse: @white;
+@text-selection-bg: @primary-color;
+@font-variant-base: tabular-nums; // 数字等宽
+@font-feature-settings-base: 'tnum';
+@font-size-base: 14px;
+@heading-color: fade(@black, 85%);
+
+// -------- Colors -----------
+// >>> Primary
+@primary-color: @blue-6;
+@primary-color-hover: color(~`colorPalette('@{primary-color}', 5) `);
+@primary-color-active: color(~`colorPalette('@{primary-color}', 7) `);
+@primary-color-outline: fade(@primary-color, @outline-fade);
+// >>> Danger
+@danger-color: @red-6;
+@danger-color-hover: color(~`colorPalette('@{danger-color}', 5) `);
+@danger-color-active: color(~`colorPalette('@{danger-color}', 7) `);
+@danger-color-outline: fade(@danger-color, @outline-fade);
+
+// >>> Error
+@normal-color: #d9d9d9;
+@white: #fff;
+@black: #000;
+
+// animation
+@ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
+
+// Border color
+@border-color-base: hsv(0, 0, 85%); // base border outline a component
+@border-color-split: hsv(0, 0, 94%); // split border inside a component
+@border-color-inverse: @white;
+@border-width-base: 1px;
+@border-style-base: solid;
+
+// Outline
+@outline-blur-size: 0;
+@outline-width: 2px;
+@outline-color: @primary-color; // No use anymore
+@outline-fade: 20%;
+
+@background-color-light: hsv(0, 0, 98%); // background of header and selected item
+@background-color-base: hsv(0, 0, 96%); // Default grey background color
+
+// Disabled states
+@disabled-color: fade(#000, 25%);
+@disabled-bg: @background-color-base;
+@disabled-active-bg: tint(@black, 90%);
+@disabled-color-dark: fade(#fff, 35%);
+
+// Animation
+@ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+// LINK
+@link-color: @primary-color;
+@link-hover-color: color(~`colorPalette('@{link-color}', 5) `);
+@link-active-color: color(~`colorPalette('@{link-color}', 7) `);
+@link-decoration: none;
+@link-hover-decoration: none;
+@link-focus-decoration: none;
+@link-focus-outline: 0;
+
+// buttons
+
+@btn-line-height: @line-height-base;
+@btn-font-weight: 400;
+@btn-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+@btn-border-radius-base: @border-radius-base;
+@btn-border-radius-sm: @border-radius-base;
+@btn-border-width: @border-width-base;
+@btn-border-style: @border-style-base;
+@btn-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+
+@btn-primary-color: #fff;
+@btn-primary-bg: @primary-color;
+@btn-primary-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+
+@btn-default-bg: @component-background;
+@btn-default-color: @text-color;
+@btn-default-border: @border-color-base;
+
+@btn-danger-color: #fff;
+@btn-danger-bg: @danger-color;
+@btn-danger-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+
+@btn-disable-color: @disabled-color;
+@btn-disable-bg: @disabled-bg;
+@btn-disable-border: @border-color-base;
+
+// Motion
+// ---
+@wave-animation-width: 6px;
