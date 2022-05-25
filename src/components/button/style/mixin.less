@@ -1,3 +1,10 @@
+.button-size(@height;@padding-horizontal;@font-size;@border-radius) {
+  @padding-vertical: max((round(((@height - @font-size * @line-height-base) / 2) * 10) / 10) - @border-width-base, 0);
+  height: @height;
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  border-radius: @border-radius;
+}
 .button-color(@color; @background; @border) {
   color: @color;
   border-color: @border;
@@ -77,6 +84,15 @@
 .btn-danger() {
   .button-variant-primary(@btn-danger-color;@btn-danger-bg;@danger-color-hover;@danger-color-active);
 }
+.btn-success() {
+  .button-variant-primary(@btn-success-color;@btn-success-bg;@success-color-hover;@success-color-active);
+}
+.btn-warning() {
+  .button-variant-primary(@btn-warning-color;@btn-warning-bg;@warning-color-hover;@warning-color-active);
+}
+.btn-info() {
+  .button-variant-primary(@btn-info-color;@btn-info-bg;@info-color-hover;@info-color-active);
+}
 .btn() {
   position: relative;
   display: inline-block;
@@ -100,5 +116,16 @@
     > * {
       pointer-events: none;
     }
+  }
+  &-lg {
+    .button-size(
+      @btn-height-lg; @btn-padding-horizontal-lg; @btn-font-size-lg; @btn-border-radius-base
+    );
+  }
+
+  &-sm {
+    .button-size(
+      @btn-height-sm; @btn-padding-horizontal-sm; @btn-font-size-sm; @btn-border-radius-sm
+    );
   }
 }

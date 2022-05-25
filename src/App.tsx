@@ -1,15 +1,19 @@
-import { defineComponent } from 'vue';
-import { Button } from './components/button/button';
+import { defineComponent,ref } from 'vue';
+import Button from './components/button/demo';
 export const App = defineComponent({
   name: 'App',
   setup() {
+    const test = ref<boolean>(false)
     return () => (
       <div>
-        <div>app</div>
-        <Button type="primary">测试1</Button>
-        <Button >测试2</Button>
-        <Button type='danger'>测试2</Button>
-        <Button type='danger' disabled>无法选择</Button>
+        <div
+          style={{
+            padding: '10px'
+          }}
+        >
+          <h1>button组件</h1>
+          <Button></Button>
+        </div>
       </div>
     );
   }

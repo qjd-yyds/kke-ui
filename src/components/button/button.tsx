@@ -18,7 +18,7 @@ export const Button = defineComponent({
   props: buttonType(),
   setup(props, { slots, attrs, emit }) {
     const buttonNodeRef = ref<HTMLElement>(null!);
-    const { prefixCls = 'kke-btn', size, htmlType,disabled } = props;
+    const { prefixCls = 'kke-btn', size, htmlType, disabled } = props;
     const handleClick = (event: Event) => {
       if (disabled) {
         event.preventDefault();
@@ -27,15 +27,18 @@ export const Button = defineComponent({
       emit('click', event);
     };
     const classes = computed(() => {
-      const { type, shape = 'default', ghost, block, danger } = props;
+      const { type, shape = 'default' } = props;
       const pre = prefixCls;
       const sizeClassNameMap = { large: 'lg', small: 'sm', middle: undefined };
+      const sizeCls = size ? sizeClassNameMap[size] || '' : '';
       return {
         [`${pre}`]: true,
-        [`${pre}-${type}`]: type
+        [`${pre}-${type}`]: type,
+        [`${pre}-${sizeCls}`]: sizeCls
       };
     });
     return () => {
+      const { icon = slots.icon?.() } = props;
       const buttonProps = {
         ...attrs,
         disabled,
@@ -46,6 +49,7 @@ export const Button = defineComponent({
       return (
         <Wave>
           <button ref={buttonNodeRef} {...buttonProps} type={htmlType}>
+            {icon}
             {children}
           </button>
         </Wave>

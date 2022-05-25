@@ -1,11 +1,9 @@
 import type { PropType } from 'vue';
-export type ButtonType = 'link' | 'default' | 'primary' | 'ghost' | 'dashed' | 'text'|'danger';
+export type ButtonType = 'default' | 'primary' | 'text' | 'link' | 'danger' | 'success' | 'info' | "warning";
 
 export type ButtonShape = 'default' | 'circle' | 'round';
 
 export type ButtonHTMLType = 'submit' | 'button' | 'reset';
-
-export type LegacyButtonType = ButtonType | 'danger';
 
 export type SizeType = 'small' | 'middle' | 'large' | undefined;
 

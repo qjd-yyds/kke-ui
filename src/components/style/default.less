@@ -19,7 +19,21 @@
 @font-variant-base: tabular-nums; // 数字等宽
 @font-feature-settings-base: 'tnum';
 @font-size-base: 14px;
+@font-size-lg: @font-size-base + 2px;
+@font-size-sm: 12px;
 @heading-color: fade(@black, 85%);
+
+// vertical paddings
+@padding-lg: 24px; // containers
+@padding-md: 16px; // small containers and buttons
+@padding-sm: 12px; // Form controls and items
+@padding-xs: 8px; // small items
+@padding-xss: 4px; // more small
+
+// height rules
+@height-base: 32px;
+@height-lg: 40px;
+@height-sm: 24px;
 
 // -------- Colors -----------
 // >>> Primary
@@ -27,11 +41,30 @@
 @primary-color-hover: color(~`colorPalette('@{primary-color}', 5) `);
 @primary-color-active: color(~`colorPalette('@{primary-color}', 7) `);
 @primary-color-outline: fade(@primary-color, @outline-fade);
+
 // >>> Danger
 @danger-color: @red-6;
 @danger-color-hover: color(~`colorPalette('@{danger-color}', 5) `);
 @danger-color-active: color(~`colorPalette('@{danger-color}', 7) `);
 @danger-color-outline: fade(@danger-color, @outline-fade);
+
+// >>> Success
+@success-color: @green-base;
+@success-color-hover: color(~`colorPalette('@{success-color}', 5) `);
+@success-color-active: color(~`colorPalette('@{success-color}', 7) `);
+@success-color-outline: fade(@success-color, @outline-fade);
+
+// >>> warning
+@warning-color: @gold-base;
+@warning-color-hover: color(~`colorPalette('@{warning-color}', 5) `);
+@warning-color-active: color(~`colorPalette('@{warning-color}', 7) `);
+@warning-color-outline: fade(@warning-color, @outline-fade);
+
+// >>> info
+@info-color: @gray-base;
+@info-color-hover: color(~`colorPalette('@{info-color}', 5) `);
+@info-color-active: color(~`colorPalette('@{info-color}', 7) `);
+@info-color-outline: fade(@info-color, @outline-fade);
 
 // >>> Error
 @normal-color: #d9d9d9;
@@ -85,6 +118,9 @@
 @btn-border-width: @border-width-base;
 @btn-border-style: @border-style-base;
 @btn-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+@btn-height-base: @height-base;
+@btn-height-lg: @height-lg;
+@btn-height-sm: @height-sm;
 
 @btn-primary-color: #fff;
 @btn-primary-bg: @primary-color;
@@ -98,9 +134,27 @@
 @btn-danger-bg: @danger-color;
 @btn-danger-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 
+@btn-success-color: #fff;
+@btn-success-bg: @success-color;
+@btn-success-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+
+@btn-warning-color: #fff;
+@btn-warning-bg: @warning-color;
+@btn-warning-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+
+@btn-info-color: #fff;
+@btn-info-bg: @info-color;
+@btn-info-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+
 @btn-disable-color: @disabled-color;
 @btn-disable-bg: @disabled-bg;
 @btn-disable-border: @border-color-base;
+
+@btn-font-size-lg: @font-size-lg;
+@btn-font-size-sm: @font-size-base;
+@btn-padding-horizontal-base: @padding-md - 1px;
+@btn-padding-horizontal-lg: @btn-padding-horizontal-base;
+@btn-padding-horizontal-sm: @padding-xs - 1px;
 
 // Motion
 // ---
