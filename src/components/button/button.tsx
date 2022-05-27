@@ -16,6 +16,7 @@ export const Button = defineComponent({
   inheritAttrs: false,
   __KKE_BUTTON: true,
   props: buttonType(),
+  // emits: ['click'],
   setup(props, { slots, attrs, emit }) {
     const buttonNodeRef = ref<HTMLElement>(null!);
     const { prefixCls = 'kke-btn', size, htmlType, disabled } = props;

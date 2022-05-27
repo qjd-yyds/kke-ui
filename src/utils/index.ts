@@ -43,3 +43,4 @@ export const findDOMNode = (instance: any): HTMLElement => {
 };
 
 export { default as raf } from './raf';
+export type { VueNode } from './type';

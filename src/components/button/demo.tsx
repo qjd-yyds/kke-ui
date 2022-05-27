@@ -1,15 +1,25 @@
+import type { CSSProperties } from 'vue';
+import { defineComponent, Fragment } from 'vue';
 import Button from '.';
-import { defineComponent, Fragment, CSSProperties } from 'vue';
+import message from '@/components/message';
 
 export default defineComponent({
   name: 'ButtonDemo',
-  setup() {
+  setup(props) {
     const ml: CSSProperties = {
       margin: '0 10px'
     };
+    const info = () => {
+      message.open({
+        content: '大家好',
+        onClose: () => {
+          console.log('关闭message，触发的回调函数');
+        }
+      });
+    };
     return () => (
       <Fragment>
-        <Button type="primary" style={ml}>
+        <Button type="primary" style={ml} onClick={info}>
           primary
         </Button>
         <Button style={ml}>default</Button>
