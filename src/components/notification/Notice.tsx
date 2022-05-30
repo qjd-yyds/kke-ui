@@ -2,13 +2,12 @@ import { defineComponent, computed, onMounted, onUnmounted, watch } from 'vue';
 
 export default defineComponent({
   name: 'Notice',
-  props: ['duration', 'noticeKey', 'onClose'],
+  props: ['duration', 'noticeKey', 'onClose', 'prefixCls'],
   inheritAttrs: false,
-  setup(props) {
-    console.log("setup")
+  setup(props, { slots }) {
     let closeTimer: any;
-    // 默认1.5s后自动关闭
-    const duration = computed(() => (props.duration === undefined ? 1.5 : props.duration));
+    // 默认3s后自动关闭
+    const duration = computed(() => (props.duration === undefined ? 3 : props.duration));
     const clearCloseTimer = () => {
       if (closeTimer) {
         clearTimeout(closeTimer);
@@ -54,6 +53,14 @@ export default defineComponent({
     onUnmounted(() => {
       clearCloseTimer();
     });
-    return () => <div>我是tippop</div>;
+    return () => {
+      const { prefixCls } = props;
+      const componentClass = `${prefixCls}-notice`;
+      return (
+        <div class={componentClass}>
+          <div class={`${componentClass}-content`}>{slots.default?.()}</div>
+        </div>
+      );
+    };
   }
 });

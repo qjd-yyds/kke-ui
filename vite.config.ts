@@ -10,7 +10,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       less: {
-        javascriptEnabled: true,
+        javascriptEnabled: true
         // additionalData: `${lessVars}`,
         // modifyVars: {
         //   hack: `true; @import (reference) "${resolve(__dirname, 'src/components/style/default.less')}";` // src/css/common.less 是你需要全局变量 （你定义的定义的方法 和 变量等）
@@ -30,5 +30,8 @@ export default defineConfig({
       mergeProps: false,
       enableObjectSlots: false
     })
-  ]
+  ],
+  server: {
+    host: true, // 解决端口冲突 需要添加这个
+  }
 });

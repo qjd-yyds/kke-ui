@@ -2,7 +2,6 @@ import { computed, defineComponent, ref } from 'vue';
 import buttonType from './buttonTypes';
 import type { ButtonType } from './buttonTypes';
 import { flattenChildren } from '@/utils';
-import './style/index.less';
 import Wave from './wave';
 // 匹配两个中文
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;

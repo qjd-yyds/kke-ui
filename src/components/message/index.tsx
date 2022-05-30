@@ -5,6 +5,8 @@ let defaultDuration = 3;
 let key = 1;
 let messageInstance: any;
 let getContainer = () => document.body;
+let transitionName = 'move-up';
+let defaultTop: string;
 
 function getKeyThenIncreaseKey() {
   return key++;
@@ -40,6 +42,9 @@ function getMessageInstance(args: MessageArgsProps, callback: (i: any) => void) 
     {
       name: 'message',
       getContainer,
+      transitionName,
+      class: args.class,
+      style: { top: defaultTop }, // 覆盖原来的样式
       maxCount: 4
     },
     (instance: any) => {
@@ -56,10 +61,11 @@ function getMessageInstance(args: MessageArgsProps, callback: (i: any) => void) 
 function notice(args: MessageArgsProps) {
   const duration = args.duration === undefined ? defaultDuration : args.duration;
   const target = args.key || getKeyThenIncreaseKey();
+  // content
   const closePromise = new Promise(resolve => {
     const callback = () => {
       if (typeof args.onClose === 'function') {
-        console.log("执行用户传入的onClose回调函数");
+        console.log('执行用户传入的onClose回调函数');
         args.onClose();
       }
       resolve(true);
@@ -68,7 +74,16 @@ function notice(args: MessageArgsProps) {
       // 将当前key作为message的标识推入队列
       instance.notice({
         key: target,
-        onClose: callback
+        onClose: callback,
+        content: ({ prefixCls }: { prefixCls: string }) => {
+          const messageClass = `${prefixCls}-rtl`;
+          console.log(prefixCls, 'render');
+          return (
+            <div class={messageClass}>
+              <span>{typeof args.content === 'function' ? args.content() : args.content}</span>
+            </div>
+          );
+        }
       });
     });
   });

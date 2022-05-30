@@ -3,6 +3,7 @@ import type { VNodeRef, PropType, StyleValue } from 'vue';
 import { string, number, oneOfType } from 'vue-types';
 import Notice from './Notice';
 import { getTransitionGroupProps } from '@/utils/transition';
+import { globalConfigForApi } from '@/components/config-provider';
 type Key = number | string;
 let seed = 0;
 const now = Date.now();
@@ -17,6 +18,7 @@ type NotificationState = {
     userPassKey?: Key;
     key?: Key;
     onClose?: () => void;
+    content?: any;
   };
   holderCallback?: HolderReadyCallback;
 };
@@ -56,44 +58,56 @@ const Notification = defineComponent({
     const onClose = (key: Key) => {
       remove(key);
     };
+    const transitionProps = computed(() => {
+      const { animation = 'fade', prefixCls } = props;
+      let name = props.transitionName;
+      if (!name && animation) {
+        name = `${prefixCls}-${animation}`;
+      }
+      return getTransitionGroupProps(name!);
+    });
     expose({
       add,
       remove
     });
     return () => {
+      const { prefixCls } = props;
       const className = {
+        [prefixCls!]: true,
         [attrs.class as string]: !!attrs.class
       };
-      const transitionProps = computed(() => {
-        const { animation = 'fade', prefixCls } = props;
-        let name = props.transitionName;
-        if (!name && animation) {
-          name = `${prefixCls}-${animation}`;
-        }
-        return getTransitionGroupProps(name!);
-      });
       const noticeNodes = notices.value.map(item => {
         const { notice } = item;
+        const { content } = notice;
         const noticeProps = {
           noticeKey: notice.key,
           key: notice.key,
+          prefixCls,
           onClose: (noticeKey: Key) => {
             remove(noticeKey);
             notice.onClose?.();
           }
         };
-        return <Notice {...noticeProps}></Notice>;
+        return <Notice {...noticeProps}>{typeof content === 'function' ? content({ prefixCls }) : content}</Notice>;
       });
       return (
         <div class={className} style={(attrs.style as StyleValue) || { top: '65px', left: '50%' }}>
-          <TransitionGroup tag="div">{noticeNodes}</TransitionGroup>
+          <TransitionGroup tag="div" {...transitionProps.value}>
+            {noticeNodes}
+          </TransitionGroup>
         </div>
       );
     };
   }
 });
 Notification.newInstance = (properties: any, callback: any) => {
-  const { name = 'notification', getContainer, ...props } = properties;
+  const {
+    name = 'notification',
+    getContainer,
+    prefixCls: customizePrefixCls,
+    transitionName: customTransitionName,
+    ...props
+  } = properties;
   const div = document.createElement('div');
   if (getContainer) {
     const container = getContainer();
@@ -122,7 +136,19 @@ Notification.newInstance = (properties: any, callback: any) => {
           component: notiRef
         });
       });
-      return () => <Notification ref={notiRef} {...(attrs as any)}></Notification>;
+      return () => {
+        const global = globalConfigForApi;
+        const prefixCls = global.getPrefixCls?.(name, customizePrefixCls);
+        const transitionName = customTransitionName;
+        return (
+          <Notification
+            ref={notiRef}
+            prefixCls={prefixCls}
+            transitionName={transitionName}
+            {...(attrs as any)}
+          ></Notification>
+        );
+      };
     }
   });
   // 创建一个vnode

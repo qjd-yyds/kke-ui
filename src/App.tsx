@@ -1,10 +1,9 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import Button from './components/button/demo';
 import ConfigProvider from './components/config-provider';
 export const App = defineComponent({
   name: 'App',
   setup() {
-    const test = ref<boolean>(false);
     return () => (
       <ConfigProvider>
         <div>

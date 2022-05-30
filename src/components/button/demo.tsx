@@ -11,7 +11,7 @@ export default defineComponent({
     };
     const info = () => {
       message.open({
-        content: '大家好',
+        content: '大家好1',
         onClose: () => {
           console.log('关闭message，触发的回调函数');
         }
