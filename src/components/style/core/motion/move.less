@@ -20,7 +20,10 @@
     animation-timing-function: @ease-in-circ;
   }
 }
-
+.kke-move-up-enter,.kke-move-up-appear {
+  opacity: 0;
+  animation-timing-function: @ease-out-circ;
+}
 .move-motion(move-up, kkeMoveUp);
 .move-motion(move-down, kkeMoveDown);
 .move-motion(move-left, kkeMoveLeft);
