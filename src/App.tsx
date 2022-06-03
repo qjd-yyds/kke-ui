@@ -14,6 +14,7 @@ export const App = defineComponent({
           >
             <h1>button组件</h1>
             <Button></Button>
+            <hr />
           </div>
         </div>
       </ConfigProvider>
