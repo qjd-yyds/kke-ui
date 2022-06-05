@@ -14,6 +14,7 @@
     "path": "^0.12.7",
     "qjd-icons-vue": "^1.1.0",
     "vue": "^3.2.25",
+    "vue-router": "4",
     "vue-types": "^4.1.1"
   },
   "devDependencies": {
