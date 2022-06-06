@@ -1,11 +1,11 @@
 import { defineComponent } from 'vue';
-import { Header } from '@/components/layout/layout';
+import UploadFile from '@/components/uploadFile';
 export default defineComponent({
   name: 'index',
   setup() {
     return () => (
       <div>
-        <Header>打算大</Header>
+        <UploadFile></UploadFile>
       </div>
     );
   }

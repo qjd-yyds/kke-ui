@@ -33,5 +33,6 @@ export default defineConfig({
   ],
   server: {
     host: true, // 解决端口冲突 需要添加这个
+    open: true
   }
 });
