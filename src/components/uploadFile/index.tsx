@@ -1,51 +1,19 @@
 import useConfigInject from '@/utils/hooks/useConfigInject';
-import { defineComponent, onMounted, ref } from 'vue';
-import Button from '../button';
-function FileContainer() {}
+import { defineComponent } from 'vue';
+import FileEnrichment from './FileEnrichment';
+import FileSingle from './FileSingle';
+import FileSingleBase from './FileSingleBase';
 export default defineComponent({
   name: 'UploadFile',
   setup(props) {
     const { prefixCls } = useConfigInject('UploadFile', props);
-    const fileIpt = ref<HTMLInputElement>();
-    const chooseFile = () => {
-      fileIpt.value.click();
-    };
-    onMounted(() => {
-      fileIpt.value.addEventListener('change', function () {
-        const file = this.files[0];
-        if (!file) return;
-        if (file.size > 2 * 1024 * 1024) {
-          alert('文件大小不能超过2M');
-        }
-        console.log(file);
-      });
-    });
     return () => (
       <>
-        <section>
-          <div>单文件上传formData</div>
-          <input
-            type="file"
-            ref={fileIpt}
-            style={{
-              display: 'none'
-            }}
-          />
-          <Button
-            type="primary"
-            onClick={chooseFile}
-            style={{
-              margin: '0px 10px'
-            }}
-          >
-            选择文件
-          </Button>
-          <Button type="success">上传到服务器</Button>
-        </section>
+        <FileSingle></FileSingle>
         <hr />
-        <section>单文件上传base64-只能上传图片</section>
+        <FileSingleBase></FileSingleBase>
         <hr />
-        <section>单文件上传浓缩图处理</section>
+        <FileEnrichment></FileEnrichment>
         <hr />
         <section>单文件上传进度管理</section>
         <hr />
