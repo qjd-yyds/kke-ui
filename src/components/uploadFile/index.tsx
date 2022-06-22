@@ -3,6 +3,7 @@ import { defineComponent } from 'vue';
 import FileEnrichment from './FileEnrichment';
 import FileSingle from './FileSingle';
 import FileSingleBase from './FileSingleBase';
+import FileDrag from './FileDrag';
 export default defineComponent({
   name: 'UploadFile',
   setup(props) {
@@ -19,7 +20,7 @@ export default defineComponent({
         <hr />
         <section>多文件上传</section>
         <hr />
-        <section>拖拽上传</section>
+        <FileDrag></FileDrag>
         <hr />
         <section>大文件上传</section>
       </>
