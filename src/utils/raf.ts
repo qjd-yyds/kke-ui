@@ -12,7 +12,7 @@ const rafIds = new Map<number, number>();
 function cleanup(id: number) {
   rafIds.delete(id);
 }
-
+// 这个方法主要用来模拟浏览器动画帧
 export default function wrapperRaf(callback: () => void, times = 1) {
   rafUUID++;
   const id = rafUUID;
