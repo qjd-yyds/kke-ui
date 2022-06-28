@@ -20,7 +20,6 @@ const ComponentsShow = () => {
 export const App = defineComponent({
   name: 'App',
   setup() {
-    test();
     return () => (
       <ConfigProvider>
         <ComponentsShow></ComponentsShow>
