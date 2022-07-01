@@ -1,5 +1,8 @@
 /**
  * @description: 树
+ * 深度优先遍历
+ * 广度优先遍历
+ * 先序中序后序遍历
  */
 const tree = {
   val: 'a',
@@ -52,7 +55,8 @@ const bfs = root => {
     const node = queue.shift();
     console.log(node.val);
     node.children.forEach(child => {
-      queue.push(child)
-    })
+      queue.push(child);
+    });
   }
-}
+};
+
