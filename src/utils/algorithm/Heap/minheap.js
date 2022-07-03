@@ -37,11 +37,11 @@ class MinHeap {
     const rightIndex = this.getRightIndex(index);
     if (this.heap[index] > this.heap[leftIndex]) {
       this.swap(index, leftIndex);
-      shiftDown(leftIndex)
+      this.shiftDown(leftIndex)
     }
     if (this.heap[index] > this.heap[rightIndex]) {
       this.swap(index, rightIndex);
-      shiftDown(rightIndex)
+      this.shiftDown(rightIndex)
     }
   }
   // 向堆中添加节点
