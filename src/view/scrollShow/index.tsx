@@ -6,7 +6,7 @@ export default defineComponent({
     const style: CSSProperties = {
       display: 'inline-block',
       height: '110px',
-      width: '390px',
+      width: '100%',
       overflow: 'hidden',
       position: 'relative',
       background: '#000',
@@ -36,7 +36,7 @@ export default defineComponent({
     ]);
     return () => (
       <div style={style}>
-        <SeamlessScroll list={list}>
+        <SeamlessScroll list={list} hover singleHeight={22} modelValue>
           {list.map(item => {
             return <div key={item.time}>{item.name}</div>;
           })}
