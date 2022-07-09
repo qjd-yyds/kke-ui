@@ -35,13 +35,15 @@ export default defineComponent({
       }
     ]);
     return () => (
-      <div style={style}>
-        <SeamlessScroll list={list} hover singleHeight={22} modelValue>
-          {list.map(item => {
-            return <div key={item.time}>{item.name}</div>;
-          })}
-        </SeamlessScroll>
-      </div>
+      <>
+        <div style={style}>
+          <SeamlessScroll singleLine list={list} direction={'right'} hover modelValue>
+            {list.map(item => {
+              return <div key={item.time}>{item.name}</div>;
+            })}
+          </SeamlessScroll>
+        </div>
+      </>
     );
   }
 });

@@ -1,7 +1,13 @@
-import { array, number, oneOf, string, bool } from 'vue-types';
+import { array, number, oneOf, string, bool, oneOfType, object } from 'vue-types';
 export const vertical = ['down', 'up'] as const;
 export const horizontal = ['left', 'right'] as const;
 export type direction = typeof vertical[number] | typeof horizontal[number];
+export type Ease = {
+  x1: number;
+  x2: number;
+  y1: number;
+  y2: number;
+};
 export const seamlessScrollTypes = () => {
   return {
     // 是否自动滚动,默认自动滚动
@@ -29,7 +35,8 @@ export const seamlessScrollTypes = () => {
     // 开启鼠标悬停默认关闭
     hover: bool().def(false),
     // 开启数据监听
-    isWatch: bool().def(true)
+    isWatch: bool().def(true),
+    ease: oneOfType<string | Ease>([String, Object]).def("ease-in")
   };
 };
 

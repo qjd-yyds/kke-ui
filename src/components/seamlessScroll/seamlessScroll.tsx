@@ -22,11 +22,13 @@ export const SeamlessScroll = defineComponent({
     const isHover = ref(false);
     const _count = ref(0); //  循环的次数
     const realBoxStyle = computed<CSSProperties>(() => {
+      const ease = typeof props.ease === 'string' ? props.ease :`cubic-bezier(${props.ease.x1},${props.ease.y1},${props.ease.x2},${props.ease.y2})`
+      const transition = `all ${ease} ${props.delay}ms`;
       return {
         width: 'auto',
         transform: `translate(${xPos.value}px,${yPos.value}px)`,
+        transition,
         overflow: 'hidden',
-        transition: `${props.delay}ms`,
         display: props.singleLine ? 'flex' : 'block'
       };
     });
@@ -58,8 +60,8 @@ export const SeamlessScroll = defineComponent({
     };
     const animation = (_direction: direction, _step: number, isWheel?: boolean) => {
       reqFrame.value = requestAnimationFrame(() => {
-        const h = realBoxHeight.value / 2;
-        const w = realBoxWidth.value / 2;
+        const h = realBoxHeight.value / (props.copyNum + 1);
+        const w = realBoxWidth.value / (props.copyNum + 1);
         if (_direction === 'up') {
           if (Math.abs(yPos.value) >= h) {
             yPos.value = 0;
@@ -75,6 +77,20 @@ export const SeamlessScroll = defineComponent({
             emit('count', _count.value);
           }
           yPos.value += _step;
+        } else if (_direction === 'left') {
+          if (Math.abs(xPos.value) >= w) {
+            xPos.value = 0;
+            _count.value++;
+            emit('count', _count.value);
+          }
+          xPos.value -= _step;
+        } else if (_direction === 'right') {
+          if (xPos.value >= 0) {
+            xPos.value = w * -1;
+            _count.value++;
+            emit('count', _count.value);
+          }
+          xPos.value += _step;
         }
         if (isWheel) {
           return;
@@ -107,12 +123,13 @@ export const SeamlessScroll = defineComponent({
     // 初始化滚动
     const initMove = () => {
       if (isHorizontal.value) {
-        console.log('横向滚动！');
-        return;
+        // 初始化容器也滚动的宽度
+        let slotsListWidth = slotListRef.value.offsetWidth;
+        slotsListWidth = slotsListWidth * (props.copyNum + 1);
+        realBoxWidth.value = slotsListWidth;
       }
       // 防止init后数据不能滚动
       if (isScroll.value) {
-        console.log('判定竖直滚动！');
         realBoxHeight.value = realBoxRef.value.offsetHeight;
         if (props.modelValue) {
           move();
