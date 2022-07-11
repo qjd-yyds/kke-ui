@@ -6,7 +6,7 @@ export default defineComponent({
     const style: CSSProperties = {
       display: 'inline-block',
       height: '110px',
-      width: '100%',
+      width: '100px',
       overflow: 'hidden',
       position: 'relative',
       background: '#000',
@@ -32,12 +32,20 @@ export default defineComponent({
       {
         name: '测试5',
         time: '2020-01-05'
+      },
+      {
+        name: '测试6',
+        time: '2020-01-06'
+      },
+      {
+        name: '测试7',
+        time: '2020-01-07'
       }
     ]);
     return () => (
       <>
         <div style={style}>
-          <SeamlessScroll singleLine list={list} direction={'right'} hover modelValue>
+          <SeamlessScroll  singleLine list={list} direction={'left'} hover modelValue>
             {list.map(item => {
               return <div key={item.time}>{item.name}</div>;
             })}

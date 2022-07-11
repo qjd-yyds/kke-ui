@@ -22,10 +22,13 @@ export const SeamlessScroll = defineComponent({
     const isHover = ref(false);
     const _count = ref(0); //  循环的次数
     const realBoxStyle = computed<CSSProperties>(() => {
-      const ease = typeof props.ease === 'string' ? props.ease :`cubic-bezier(${props.ease.x1},${props.ease.y1},${props.ease.x2},${props.ease.y2})`
+      const ease =
+        typeof props.ease === 'string'
+          ? props.ease
+          : `cubic-bezier(${props.ease.x1},${props.ease.y1},${props.ease.x2},${props.ease.y2})`;
       const transition = `all ${ease} ${props.delay}ms`;
       return {
-        width: 'auto',
+        width: realBoxWidth.value ? `${realBoxWidth.value}px` : 'auto',
         transform: `translate(${xPos.value}px,${yPos.value}px)`,
         transition,
         overflow: 'hidden',
@@ -182,7 +185,7 @@ export const SeamlessScroll = defineComponent({
     const onWheel = throttle((e: WheelEvent) => {
       cancel();
       const { deltaY } = e;
-      const singleHeight = !!props.singleHeight ? props.singleHeight : realBoxRef.value.offsetHeight;
+      const singleHeight = !!props.singleHeight ? props.singleHeight : 15;
       if (deltaY < 0) {
         animation('down', singleHeight, true);
       } else {
