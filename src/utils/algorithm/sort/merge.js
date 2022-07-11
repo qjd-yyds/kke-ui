@@ -1,4 +1,4 @@
-// 冒泡排序 logn 每次分两半
+// 归并 logn 每次分两半
 Array.prototype.mergeSort = function () {
   const rec = arr => {
     if (arr.length === 1) return arr;
