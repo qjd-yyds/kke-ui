@@ -1,0 +1,81 @@
+@import '../../style/index.less';
+@loading-prefix-cls:~ '@{kke-prefix}-loading';
+@loading-pacman-prefix-cls:~ '@{loading-prefix-cls}-pacman';
+.@{loading-prefix-cls} {
+  position: relative;
+}
+.@{loading-pacman-prefix-cls} {
+  .pacman-item {
+    &:nth-child(1) {
+      width: 0;
+      height: 0;
+      border-radius: 25px;
+      border: 25px solid #279fcf;
+      border-right-color: transparent;
+      animation: pacman_up 0.75s infinite;
+    }
+    &:nth-child(2) {
+      margin-top: -50px;
+      width: 0;
+      height: 0;
+      border-radius: 25px;
+      border: 25px solid #279fcf;
+      border-right-color: transparent;
+      animation: pacman_down 0.75s infinite;
+    }
+  }
+  .pacman-beans {
+    background-color: #279fcf;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 0 2px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    // transform: translate(0, -6.25px);
+    top: 25px;
+    left: 100px;
+    &:nth-child(1) {
+      animation: pacman-balls 1s 0.33s infinite;
+    }
+    &:nth-child(2) {
+      animation: pacman-balls 1s 0.66s infinite;
+    }
+    &:nth-child(3) {
+      animation: pacman-balls 1s 0.99s infinite;
+    }
+  }
+}
+@keyframes pacman_up {
+  0% {
+    transform: rotate(270deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+@keyframes pacman_down {
+  0% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes pacman-balls {
+  75% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-100px, -6.25px);
+  }
+}

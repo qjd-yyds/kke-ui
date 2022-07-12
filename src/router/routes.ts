@@ -1,6 +1,7 @@
 import { createRouter, type RouteRecordRaw } from 'vue-router';
 import d3Demo from '@/view/d3Demo';
 import scrollShow from '@/view/scrollShow';
+import Loading from '@/view/Loading';
 const routes: RouteRecordRaw[] = [
   {
     path: '/d3',
@@ -9,6 +10,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/scroll',
     component: scrollShow
+  },
+  {
+    path: '/loading',
+    component: Loading
   }
 ];
 
