@@ -1,0 +1,35 @@
+@import '../../style/index.less';
+@pagination-prefix-cls: ~'@{kke-prefix}-pagination';
+.@{pagination-prefix-cls} {
+  display: flex;
+  button {
+    width: 32px;
+    height: 32px;
+    outline: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+  }
+  ul {
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    list-style: none;
+    min-width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    outline: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+}
+.@{pagination-prefix-cls}-pager {
+  .active {
+    font-weight: 500;
+    background: #fff;
+    border-color: #1890ff;
+  }
+}
