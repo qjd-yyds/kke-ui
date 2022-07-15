@@ -7,7 +7,7 @@ export default defineComponent({
     totalPage: number(),
     defaultCurrent: number().def(1),
     centerSize: number().def(5),
-    jumpSize: number().def(1)
+    jumpSize: number().def(1),
   },
   emits: ['change'],
   setup(props, { emit }) {
