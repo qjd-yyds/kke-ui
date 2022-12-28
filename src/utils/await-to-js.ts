@@ -11,3 +11,4 @@ export function to<T, U = Error>(promise: Promise<T>, errorExt?: object) {
 }
 
 export default to;
+

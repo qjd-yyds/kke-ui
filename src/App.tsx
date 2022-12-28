@@ -29,6 +29,7 @@ export const App = defineComponent({
     };
     return () => (
       <ConfigProvider>
+        <div v-ripple={{color:"red"}} style={{background:"yellow" ,display:"inline-block",padding:"20px", width:"300px",height:"200px"}}></div>
         <List dataSource={dataList.value[current.value - 1]}></List>
         <Pagination
           onChange={change}
